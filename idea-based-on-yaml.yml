@@ -1,0 +1,8 @@
+name: JoinLeaveMessagePlugin
+version: 1.0.0
+commands: 
+
+listeners: 
+  onJoin: 
+  
+    - run: 
