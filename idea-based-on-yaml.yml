@@ -1,8 +1,44 @@
-name: JoinLeaveMessagePlugin
+name: ExamplePlugin
 version: 1.0.0
-commands: 
 
-listeners: 
-  onJoin: 
-  
-    - run: 
+on:
+  join:
+    - if: ${player.name} == "JetBrainer"
+      - name: welcome player
+        uses: send-message
+        with:
+          send-chat: "Hello $player, Welcome to Server"
+
+commands:
+  balance:
+    permission: example.money.check
+    jobs:
+      - name: bal
+        uses: read-bal
+      - uses: send-message
+        with:
+          send-chat: "Your balance: $bal"
+  deposit:
+    permission: example.money.deposit
+    jobs:
+      - name: my-bal
+        uses: read-bal
+        with:
+          player: $player
+      - if: ${my-bal} >= ${args.0}
+        - name: money enough to deposit
+          uses: send-message
+          with:
+            chat: "${}"
+      - else:
+
+jobs:
+  read-bal:
+    uses: read-yaml
+    file: './plugins/${plugin.name}/user-balance.yml'
+    path: 'users.${player.uniqueId}'
+
+
+permissions:
+  example.money.check: default
+
