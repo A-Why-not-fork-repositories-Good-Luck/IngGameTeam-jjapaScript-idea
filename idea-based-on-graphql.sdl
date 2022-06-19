@@ -1,0 +1,28 @@
+name: ExamplePlugin
+verseion: 1.0.0
+
+
+on {
+    join {
+        Welcome Admin {
+            player.isAdmin = ${player.name} == "Admin"
+            {
+                if: player.isAdmin == true
+                send-message: "Hello ${player.name} welcome to the server!"
+            }            
+            {
+                if: !player.isAdmin == false
+                send-message: "Hello ${player.name}, you are not admin"
+            }
+        }
+    }
+}
+
+
+commands {
+
+}
+
+permissions {
+    
+}

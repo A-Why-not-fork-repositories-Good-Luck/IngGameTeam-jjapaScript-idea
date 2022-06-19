@@ -25,7 +25,7 @@ commands:
         uses: read-bal
         with:
           player: $player
-      - if: ${my-bal} >= ${args.0}
+      - if: ${my-bal} >= ${args.1}
         - name: money enough to deposit
           uses: send-message
           with:
